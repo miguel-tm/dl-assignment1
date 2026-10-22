@@ -35,6 +35,7 @@ It has two purposes:
 | D14 | CV learning curves are plotted as mean ± std bands | Accepted |
 | D15 | Test set is used once, for the best model only, after 2e (optional) | Accepted |
 | D16 | Input defined with `keras.Input(shape=(13,))` | Accepted |
+| D17 | Learning curves use a log-scale y-axis | Proposed |
 | E01 | Notebook-first project; no `src/` package | Accepted |
 | E02 | One setup cell detects Colab vs. local and sets the data path | Superseded by E09 |
 | E03 | Use the real filenames (`X_train.csv`, capital X) | Accepted |
@@ -139,6 +140,12 @@ It has two purposes:
 - **Decision:** Use an explicit `Input` layer instead of `input_dim` / `input_shape` on `Dense`.
 - **Why:** Keras 3 warns about the old style. The explicit input works the same locally and in Colab.
 
+### D17: Learning curves use a log-scale y-axis
+- **Decision:** Both panels (MSE and MAE) of every learning-curve plot use a log y-axis.
+- **Why:** MSE starts near 600 and ends around 10–40. On a linear axis the last 50+ epochs look flat, which hides the train/validation gap that the questions are about.
+- **Alternative considered:** Linear axis, optionally starting from epoch 10. More familiar to read, but the first epochs still dominate the range.
+- **Notebook note:** "Learning curves use a log scale so differences in later epochs stay visible."
+
 ---
 
 ## Environment and tooling
@@ -241,3 +248,4 @@ It has two purposes:
 | 2026-10-22 | Added P06 (no decision IDs in notebook comments), Accepted. Added E11 (no `load_data` helper) as Proposed. |
 | 2026-10-22 | E11 accepted. |
 | 2026-10-22 | E10: recorded Colab versions (TF 2.21.0, Keras 3.13.2). Added E12 (local VS Code produces the submitted outputs), Accepted. |
+| 2026-10-22 | Added D17 (log-scale learning curves) as Proposed. |
