@@ -46,6 +46,7 @@ It has two purposes:
 | E09 | Data folder = first candidate containing `X_train.csv`; otherwise a clear error listing the paths tried | Accepted |
 | E10 | Library versions are a guide; Keras must be 3.x; actual versions recorded | Accepted |
 | E11 | CSVs are read in the template's data-import cell; no `load_data` helper | Accepted |
+| E12 | Submitted outputs come from local VS Code; Colab is a portability check only | Accepted |
 | P01 | Copilot scaffolds and advises; the solution is my own work | Superseded by P04 |
 | P02 | Required parts first; optional extras only if time allows | Accepted |
 | P03 | Each helper is written right before its first use | Accepted |
@@ -181,7 +182,7 @@ It has two purposes:
 - **Decision:** Accept whatever versions are installed (locally from `requirements.txt`, in Colab preinstalled) as long as Keras is 3.x. Record the printed versions for both environments below.
 - **Why:** The code relies on Keras 3 behaviour (D16, D01), but nothing needs an exact TF or sklearn version. Chasing exact matches costs time and conflicts with E05.
 - **Alternative considered:** Pin identical versions in both environments. It would reduce E07 differences slightly, but risks breaking Colab's runtime.
-- **Recorded versions:** Local (Windows, VS Code): Python 3.12.7, TensorFlow 2.16.2, Keras 3.15.1, scikit-learn 1.5.1, NumPy 1.26.4, pandas 2.2.2. Colab: _to fill in at 1.4_.
+- **Recorded versions:** Local (Windows, VS Code): Python 3.12.7, TensorFlow 2.16.2, Keras 3.15.1, scikit-learn 1.5.1, NumPy 1.26.4, pandas 2.2.2. Colab: Python 3.13.16, TensorFlow 2.21.0, Keras 3.13.2, scikit-learn 1.6.1, NumPy 2.1.3, pandas 2.2.3 (checked 2026-10-22).
 - **Notebook note:** "Library versions are printed at the top; small result differences between environments are expected."
 
 ### E11: CSVs are read in the template's data-import cell; no `load_data` helper
@@ -189,6 +190,12 @@ It has two purposes:
 - **Why:** The data is read exactly once, so a helper adds a layer without reuse. Keeping the reads in the template cell shows the grader the minimal change to their code.
 - **Alternative considered:** A `load_data(data_dir)` helper returning four arrays. Slightly tidier, but a one-time abstraction that hides the template's cell.
 - **Notebook note:** "Data import edited so it runs both in Colab and locally."
+
+### E12: Submitted outputs come from local VS Code; Colab is a portability check only
+- **Decision:** The final "Restart and Run All" (E08) is done locally in VS Code, and that executed notebook is submitted. Colab is used only to confirm the notebook still runs there, in case the instructor re-runs it.
+- **Why:** Outputs are saved straight into the committed notebook, versions are pinned and recorded, and there are no session timeouts or Drive download steps. The data import already works in Colab (checked in 1.4).
+- **Alternative considered:** Final run in Colab, the instructor's reference environment. It needs a download back into the repo, and Colab's versions change without notice.
+- **Notebook note:** "Outputs were produced locally (versions printed above); the notebook also runs in Colab."
 
 ---
 
@@ -233,3 +240,4 @@ It has two purposes:
 | 2026-10-22 | E10: recorded local versions (TF 2.16.2, Keras 3.15.1). |
 | 2026-10-22 | Added P06 (no decision IDs in notebook comments), Accepted. Added E11 (no `load_data` helper) as Proposed. |
 | 2026-10-22 | E11 accepted. |
+| 2026-10-22 | E10: recorded Colab versions (TF 2.21.0, Keras 3.13.2). Added E12 (local VS Code produces the submitted outputs), Accepted. |
