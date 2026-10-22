@@ -45,11 +45,13 @@ It has two purposes:
 | E08 | Numbers quoted in markdown match the outputs of the submitted run | Accepted |
 | E09 | Data folder = first candidate containing `X_train.csv`; otherwise a clear error listing the paths tried | Accepted |
 | E10 | Library versions are a guide; Keras must be 3.x; actual versions recorded | Accepted |
+| E11 | CSVs are read in the template's data-import cell; no `load_data` helper | Proposed |
 | P01 | Copilot scaffolds and advises; the solution is my own work | Superseded by P04 |
 | P02 | Required parts first; optional extras only if time allows | Accepted |
 | P03 | Each helper is written right before its first use | Accepted |
 | P04 | Copilot explains each step and writes the code; I review, test and commit; analysis is mine | Accepted |
 | P05 | Rough notes right after each model run; Phase 4 polishes them | Accepted |
+| P06 | No decision IDs in notebook comments; plain-language reasons instead | Accepted |
 
 ---
 
@@ -179,8 +181,14 @@ It has two purposes:
 - **Decision:** Accept whatever versions are installed (locally from `requirements.txt`, in Colab preinstalled) as long as Keras is 3.x. Record the printed versions for both environments below.
 - **Why:** The code relies on Keras 3 behaviour (D16, D01), but nothing needs an exact TF or sklearn version. Chasing exact matches costs time and conflicts with E05.
 - **Alternative considered:** Pin identical versions in both environments. It would reduce E07 differences slightly, but risks breaking Colab's runtime.
-- **Recorded versions:** Local: _to fill in at 1.1_. Colab: _to fill in at 1.4_.
+- **Recorded versions:** Local (Windows, VS Code): Python 3.12.7, TensorFlow 2.16.2, Keras 3.15.1, scikit-learn 1.5.1, NumPy 1.26.4, pandas 2.2.2. Colab: _to fill in at 1.4_.
 - **Notebook note:** "Library versions are printed at the top; small result differences between environments are expected."
+
+### E11: CSVs are read in the template's data-import cell; no `load_data` helper
+- **Decision:** Edit the template's data-import cell in place: mount Drive only in Colab, find the folder with `get_data_dir()`, and read the four CSVs into the template's `df_*` names. The `load_data` helper listed in P03 is not written.
+- **Why:** The data is read exactly once, so a helper adds a layer without reuse. Keeping the reads in the template cell shows the grader the minimal change to their code.
+- **Alternative considered:** A `load_data(data_dir)` helper returning four arrays. Slightly tidier, but a one-time abstraction that hides the template's cell.
+- **Notebook note:** "Data import edited so it runs both in Colab and locally."
 
 ---
 
@@ -207,6 +215,11 @@ It has two purposes:
 - **Why:** Observations are freshest right after the run, I don't have to recall 7 sets of curves at the end, and every question has something under it if time runs out.
 - **Alternative considered:** Write all the analysis in Phase 4. Harder to recall and riskier on time.
 
+### P06: No decision IDs in notebook comments; plain-language reasons instead
+- **Decision:** New notebook code states reasons in plain words. Existing IDs such as "(D05)" or "(E10)" are replaced during the clarity pass (6.1).
+- **Why:** The grader never sees DECISIONS.md, so the IDs are meaningless to them and cost clarity marks. The log stays the place for the full reasoning.
+- **Alternative considered:** Keep the IDs and add a key in the notebook. More text for the grader with no benefit.
+
 ---
 
 ## Change log
@@ -217,3 +230,5 @@ It has two purposes:
 | 2026-10-22 | D11: added identical-starting-weights rationale, ± std limitation, alternative and notebook note. Added E09 and P03 as Proposed. Maintenance rules expanded. |
 | 2026-10-22 | E09 and P03 accepted; E02 superseded by E09. |
 | 2026-10-22 | P01 superseded by P04 (Copilot writes code, I review). Added P05 (rough notes after each run) and E10 (versions are a guide), all Accepted. |
+| 2026-10-22 | E10: recorded local versions (TF 2.16.2, Keras 3.15.1). |
+| 2026-10-22 | Added P06 (no decision IDs in notebook comments), Accepted. Added E11 (no `load_data` helper) as Proposed. |
