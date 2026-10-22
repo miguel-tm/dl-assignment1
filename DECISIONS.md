@@ -44,9 +44,12 @@ It has two purposes:
 | E07 | Small result differences between environments are expected and stated | Accepted |
 | E08 | Numbers quoted in markdown match the outputs of the submitted run | Accepted |
 | E09 | Data folder = first candidate containing `X_train.csv`; otherwise a clear error listing the paths tried | Accepted |
-| P01 | Copilot scaffolds and advises; the solution is my own work | Accepted |
+| E10 | Library versions are a guide; Keras must be 3.x; actual versions recorded | Accepted |
+| P01 | Copilot scaffolds and advises; the solution is my own work | Superseded by P04 |
 | P02 | Required parts first; optional extras only if time allows | Accepted |
 | P03 | Each helper is written right before its first use | Accepted |
+| P04 | Copilot explains each step and writes the code; I review, test and commit; analysis is mine | Accepted |
+| P05 | Rough notes right after each model run; Phase 4 polishes them | Accepted |
 
 ---
 
@@ -172,6 +175,13 @@ It has two purposes:
 - **Alternative considered:** E02 as written (folder existence only). It's slightly shorter but fails late and unclearly.
 - **Notebook note:** "The data folder is the first candidate that contains the CSVs; otherwise an error lists the paths tried."
 
+### E10: Library versions are a guide; Keras must be 3.x
+- **Decision:** Accept whatever versions are installed (locally from `requirements.txt`, in Colab preinstalled) as long as Keras is 3.x. Record the printed versions for both environments below.
+- **Why:** The code relies on Keras 3 behaviour (D16, D01), but nothing needs an exact TF or sklearn version. Chasing exact matches costs time and conflicts with E05.
+- **Alternative considered:** Pin identical versions in both environments. It would reduce E07 differences slightly, but risks breaking Colab's runtime.
+- **Recorded versions:** Local: _to fill in at 1.1_. Colab: _to fill in at 1.4_.
+- **Notebook note:** "Library versions are printed at the top; small result differences between environments are expected."
+
 ---
 
 ## Process
@@ -187,6 +197,16 @@ It has two purposes:
 - **Why:** It keeps step 2 small (about 1h), reaches a working data load sooner, and each helper is tested as soon as it's written.
 - **Alternative considered:** Write the whole Helper Functions section up front. That means more untested code before anything runs.
 
+### P04: Copilot explains each step and writes the code; I review, test and commit; analysis is mine
+- **Decision:** One sub-phase at a time. Copilot explains the concepts and structure, then writes the code. I review it, test it, commit, and say "next". The analysis and conclusions in markdown are written by me.
+- **Why:** I'm orchestrating the work, and that's OK with the instructor. It's faster under the deadline while I still understand and own every step.
+- **Alternative considered:** P01 (Copilot advises only; I write all the code). Slower given the late submission.
+
+### P05: Rough notes right after each model run; Phase 4 polishes them
+- **Decision:** After each model runs (1a–1c, 2a–2d, 2e), write 2–3 rough bullets in its markdown placeholder about what the curves and numbers show. Phase 4 turns them into full answers.
+- **Why:** Observations are freshest right after the run, I don't have to recall 7 sets of curves at the end, and every question has something under it if time runs out.
+- **Alternative considered:** Write all the analysis in Phase 4. Harder to recall and riskier on time.
+
 ---
 
 ## Change log
@@ -196,3 +216,4 @@ It has two purposes:
 | 2026-10-21 | Initial log created from PLAN.md and the planning discussion (D01–D16, E01–E08, P01–P02). |
 | 2026-10-22 | D11: added identical-starting-weights rationale, ± std limitation, alternative and notebook note. Added E09 and P03 as Proposed. Maintenance rules expanded. |
 | 2026-10-22 | E09 and P03 accepted; E02 superseded by E09. |
+| 2026-10-22 | P01 superseded by P04 (Copilot writes code, I review). Added P05 (rough notes after each run) and E10 (versions are a guide), all Accepted. |
