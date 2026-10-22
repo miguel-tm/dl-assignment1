@@ -38,7 +38,7 @@ It has two purposes:
 | D17 | Learning curves use a log-scale y-axis | Superseded by D19 |
 | D18 | RMSE reported alongside MSE and MAE in every results table | Accepted |
 | D19 | Log y-axis is the default but optional; 1a also shows the linear version | Accepted |
-| D20 | CV std uses the population formula (`ddof=0`), as `np.std` does | Proposed |
+| D20 | CV std uses the population formula (`ddof=0`), as `np.std` does | Accepted |
 | E01 | Notebook-first project; no `src/` package | Accepted |
 | E02 | One setup cell detects Colab vs. local and sets the data path | Superseded by E09 |
 | E03 | Use the real filenames (`X_train.csv`, capital X) | Accepted |
@@ -274,3 +274,4 @@ It has two purposes:
 | 2026-10-22 | Added D18 (RMSE in results tables), Accepted at my request. Added D19 (optional log scale, both scales in 1a) as Proposed; D17 is superseded if D19 is accepted. |
 | 2026-10-22 | D19 accepted; D17 superseded by D19. |
 | 2026-10-22 | Added D20 (CV std with ddof=0) as Proposed. |
+| 2026-10-22 | D20 accepted. |
