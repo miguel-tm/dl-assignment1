@@ -38,6 +38,7 @@ It has two purposes:
 | D17 | Learning curves use a log-scale y-axis | Superseded by D19 |
 | D18 | RMSE reported alongside MSE and MAE in every results table | Accepted |
 | D19 | Log y-axis is the default but optional; 1a also shows the linear version | Accepted |
+| D20 | CV std uses the population formula (`ddof=0`), as `np.std` does | Proposed |
 | E01 | Notebook-first project; no `src/` package | Accepted |
 | E02 | One setup cell detects Colab vs. local and sets the data path | Superseded by E09 |
 | E03 | Use the real filenames (`X_train.csv`, capital X) | Accepted |
@@ -160,6 +161,12 @@ It has two purposes:
 - **Alternative considered:** D17 as written (log only everywhere).
 - **Notebook note:** "1a shows both scales; later plots use the log scale only."
 
+### D20: CV std uses the population formula (`ddof=0`), as `np.std` does
+- **Decision:** The ± std across the 3 folds (table and shaded bands) is computed with `ddof=0`.
+- **Why:** It matches `np.std`, the usual `scores.mean() ± scores.std()` reporting with `cross_val_score` that the template points to, and the bands in the plots (also `np.std`). One formula everywhere avoids two different "std" values for the same folds.
+- **Alternative considered:** Sample std (`ddof=1`, pandas' default). It's the unbiased estimate and is about 22% larger with 3 folds; either is defensible if stated.
+- **Notebook note:** "Std is computed across the 3 folds with ddof=0 (as np.std)."
+
 ---
 
 ## Environment and tooling
@@ -266,3 +273,4 @@ It has two purposes:
 | 2026-10-22 | D17 accepted. |
 | 2026-10-22 | Added D18 (RMSE in results tables), Accepted at my request. Added D19 (optional log scale, both scales in 1a) as Proposed; D17 is superseded if D19 is accepted. |
 | 2026-10-22 | D19 accepted; D17 superseded by D19. |
+| 2026-10-22 | Added D20 (CV std with ddof=0) as Proposed. |
