@@ -35,9 +35,9 @@ It has two purposes:
 | D14 | CV learning curves are plotted as mean ± std bands | Accepted |
 | D15 | Test set is used once, for the best model only, after 2e (optional) | Accepted |
 | D16 | Input defined with `keras.Input(shape=(13,))` | Accepted |
-| D17 | Learning curves use a log-scale y-axis | Accepted |
+| D17 | Learning curves use a log-scale y-axis | Superseded by D19 |
 | D18 | RMSE reported alongside MSE and MAE in every results table | Accepted |
-| D19 | Log y-axis is the default but optional; 1a also shows the linear version | Proposed |
+| D19 | Log y-axis is the default but optional; 1a also shows the linear version | Accepted |
 | E01 | Notebook-first project; no `src/` package | Accepted |
 | E02 | One setup cell detects Colab vs. local and sets the data path | Superseded by E09 |
 | E03 | Use the real filenames (`X_train.csv`, capital X) | Accepted |
@@ -265,3 +265,4 @@ It has two purposes:
 | 2026-10-22 | Added D17 (log-scale learning curves) as Proposed. |
 | 2026-10-22 | D17 accepted. |
 | 2026-10-22 | Added D18 (RMSE in results tables), Accepted at my request. Added D19 (optional log scale, both scales in 1a) as Proposed; D17 is superseded if D19 is accepted. |
+| 2026-10-22 | D19 accepted; D17 superseded by D19. |
