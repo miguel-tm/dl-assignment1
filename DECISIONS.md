@@ -35,7 +35,9 @@ It has two purposes:
 | D14 | CV learning curves are plotted as mean ± std bands | Accepted |
 | D15 | Test set is used once, for the best model only, after 2e (optional) | Accepted |
 | D16 | Input defined with `keras.Input(shape=(13,))` | Accepted |
-| D17 | Learning curves use a log-scale y-axis | Proposed |
+| D17 | Learning curves use a log-scale y-axis | Accepted |
+| D18 | RMSE reported alongside MSE and MAE in every results table | Accepted |
+| D19 | Log y-axis is the default but optional; 1a also shows the linear version | Proposed |
 | E01 | Notebook-first project; no `src/` package | Accepted |
 | E02 | One setup cell detects Colab vs. local and sets the data path | Superseded by E09 |
 | E03 | Use the real filenames (`X_train.csv`, capital X) | Accepted |
@@ -146,6 +148,18 @@ It has two purposes:
 - **Alternative considered:** Linear axis, optionally starting from epoch 10. More familiar to read, but the first epochs still dominate the range.
 - **Notebook note:** "Learning curves use a log scale so differences in later epochs stay visible."
 
+### D18: RMSE reported alongside MSE and MAE in every results table
+- **Decision:** Part 1 and Part 2 tables show training and validation MSE, RMSE and MAE.
+- **Why:** MSE is in squared $1000s and hard to read. RMSE = √MSE is back in $1000s, so it compares directly with MAE. The template's preamble suggests this. The gap RMSE − MAE also hints at how much large errors contribute.
+- **Alternative considered:** MSE and MAE only. Fewer columns, but the loss has no intuitive unit.
+- **Notebook note:** "RMSE = √MSE is shown so the loss can be read in $1000s, like MAE."
+
+### D19: Log y-axis is the default but optional; 1a also shows the linear version
+- **Decision:** `plot_learning_curves` has a `log_scale_y_axis` flag (default `True`). 1a shows both the linear and the log plot; the other models show the log plot only.
+- **Why:** The linear plot shows the familiar shape of fast early learning; the log plot keeps the late-epoch gap visible. Showing both once explains why log is used afterwards.
+- **Alternative considered:** D17 as written (log only everywhere).
+- **Notebook note:** "1a shows both scales; later plots use the log scale only."
+
 ---
 
 ## Environment and tooling
@@ -249,3 +263,5 @@ It has two purposes:
 | 2026-10-22 | E11 accepted. |
 | 2026-10-22 | E10: recorded Colab versions (TF 2.21.0, Keras 3.13.2). Added E12 (local VS Code produces the submitted outputs), Accepted. |
 | 2026-10-22 | Added D17 (log-scale learning curves) as Proposed. |
+| 2026-10-22 | D17 accepted. |
+| 2026-10-22 | Added D18 (RMSE in results tables), Accepted at my request. Added D19 (optional log scale, both scales in 1a) as Proposed; D17 is superseded if D19 is accepted. |
