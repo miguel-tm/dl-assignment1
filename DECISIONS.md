@@ -45,7 +45,7 @@ It has two purposes:
 | E08 | Numbers quoted in markdown match the outputs of the submitted run | Accepted |
 | E09 | Data folder = first candidate containing `X_train.csv`; otherwise a clear error listing the paths tried | Accepted |
 | E10 | Library versions are a guide; Keras must be 3.x; actual versions recorded | Accepted |
-| E11 | CSVs are read in the template's data-import cell; no `load_data` helper | Proposed |
+| E11 | CSVs are read in the template's data-import cell; no `load_data` helper | Accepted |
 | P01 | Copilot scaffolds and advises; the solution is my own work | Superseded by P04 |
 | P02 | Required parts first; optional extras only if time allows | Accepted |
 | P03 | Each helper is written right before its first use | Accepted |
@@ -232,3 +232,4 @@ It has two purposes:
 | 2026-10-22 | P01 superseded by P04 (Copilot writes code, I review). Added P05 (rough notes after each run) and E10 (versions are a guide), all Accepted. |
 | 2026-10-22 | E10: recorded local versions (TF 2.16.2, Keras 3.15.1). |
 | 2026-10-22 | Added P06 (no decision IDs in notebook comments), Accepted. Added E11 (no `load_data` helper) as Proposed. |
+| 2026-10-22 | E11 accepted. |
